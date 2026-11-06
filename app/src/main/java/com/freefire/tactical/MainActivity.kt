@@ -29,7 +29,7 @@ fun TacticalDashboard() {
 
     when (selectedModule) {
         "🎯 Aim Trainer" -> {
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
                 Button(
                     onClick = { selectedModule = "" },
                     modifier = Modifier.padding(12.dp)
@@ -41,7 +41,7 @@ fun TacticalDashboard() {
         }
 
         "🔫 Weapon Analysis" -> {
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
                 Button(
                     onClick = { selectedModule = "" },
                     modifier = Modifier.padding(12.dp)
@@ -49,6 +49,18 @@ fun TacticalDashboard() {
                     Text("← Back to Dashboard")
                 }
                 WeaponAnalysis()
+            }
+        }
+
+        "🗺️ Map Guide" -> {
+            Column(Modifier.fillMaxSize()) {
+                Button(
+                    onClick = { selectedModule = "" },
+                    modifier = Modifier.padding(12.dp)
+                ) {
+                    Text("← Back to Dashboard")
+                }
+                MapGuide()
             }
         }
 
@@ -89,7 +101,7 @@ fun TacticalDashboard() {
                         modifier = Modifier.fillMaxWidth(),
                         onClick = { selectedModule = module.first }
                     ) {
-                        Column(modifier = Modifier.padding(20.dp)) {
+                        Column(Modifier.padding(20.dp)) {
                             Text(
                                 module.first,
                                 style = MaterialTheme.typography.titleLarge
