@@ -8,14 +8,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             MaterialTheme {
                 TacticalDashboard()
@@ -28,18 +26,27 @@ class MainActivity : ComponentActivity() {
 fun TacticalDashboard() {
     var selectedModule by remember { mutableStateOf("") }
 
-    val modules = listOf(
-        "🎯 Aim Trainer" to "Practice accuracy and reaction time.",
-        "🔫 Weapon Analysis" to "Compare weapon statistics.",
-        "🗺️ Map Guide" to "Study locations and tactical routes."
-    )
+    if (selectedModule == "🎯 Aim Trainer") {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Button(
+                onClick = { selectedModule = "" },
+                modifier = Modifier.padding(12.dp)
+            ) {
+                Text("← Back to Dashboard")
+            }
+            AimTrainer()
+        }
+    } else {
+        val modules = listOf(
+            "🎯 Aim Trainer" to "Practice accuracy and reaction time",
+            "🔫 Weapon Analysis" to "Compare weapon statistics",
+            "🗺️ Map Guide" to "Study locations and tactical routes"
+        )
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
         LazyColumn(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
@@ -71,26 +78,11 @@ fun TacticalDashboard() {
                             module.first,
                             style = MaterialTheme.typography.titleLarge
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
                         Text(module.second)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            "TAP TO OPEN →",
-                            color = MaterialTheme.colorScheme.primary
-                        )
                     }
-                }
-            }
-
-            item {
-                if (selectedModule.isNotEmpty()) {
-                    Text(
-                        "Selected: $selectedModule",
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Text("Training module coming soon!")
                 }
             }
         }
     }
 }
+
