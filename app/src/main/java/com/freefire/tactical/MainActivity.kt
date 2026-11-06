@@ -1,3 +1,4 @@
+
 package com.freefire.tactical
 
 import android.os.Bundle
@@ -26,63 +27,78 @@ class MainActivity : ComponentActivity() {
 fun TacticalDashboard() {
     var selectedModule by remember { mutableStateOf("") }
 
-    if (selectedModule == "🎯 Aim Trainer") {
-        Column(modifier = Modifier.fillMaxSize()) {
-            Button(
-                onClick = { selectedModule = "" },
-                modifier = Modifier.padding(12.dp)
-            ) {
-                Text("← Back to Dashboard")
-            }
-            AimTrainer()
-        }
-    } else {
-        val modules = listOf(
-            "🎯 Aim Trainer" to "Practice accuracy and reaction time",
-            "🔫 Weapon Analysis" to "Compare weapon statistics",
-            "🗺️ Map Guide" to "Study locations and tactical routes"
-        )
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            item {
-                Text(
-                    "FREE FIRE",
-                    style = MaterialTheme.typography.headlineMedium
-                )
-                Text(
-                    "TACTICAL TOOLKIT",
-                    style = MaterialTheme.typography.headlineSmall
-                )
-                Text("Your gameplay training companion")
-            }
-
-            item {
-                Text(
-                    "TRAINING MODULES",
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
-
-            items(modules) { module ->
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = { selectedModule = module.first }
+    when (selectedModule) {
+        "🎯 Aim Trainer" -> {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Button(
+                    onClick = { selectedModule = "" },
+                    modifier = Modifier.padding(12.dp)
                 ) {
-                    Column(modifier = Modifier.padding(20.dp)) {
-                        Text(
-                            module.first,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-                        Text(module.second)
+                    Text("← Back to Dashboard")
+                }
+                AimTrainer()
+            }
+        }
+
+        "🔫 Weapon Analysis" -> {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Button(
+                    onClick = { selectedModule = "" },
+                    modifier = Modifier.padding(12.dp)
+                ) {
+                    Text("← Back to Dashboard")
+                }
+                WeaponAnalysis()
+            }
+        }
+
+        else -> {
+            val modules = listOf(
+                "🎯 Aim Trainer" to "Practice accuracy and reaction time",
+                "🔫 Weapon Analysis" to "Compare weapon statistics",
+                "🗺️ Map Guide" to "Study locations and tactical routes"
+            )
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                item {
+                    Text(
+                        "FREE FIRE",
+                        style = MaterialTheme.typography.headlineMedium
+                    )
+                    Text(
+                        "TACTICAL TOOLKIT",
+                        style = MaterialTheme.typography.headlineSmall
+                    )
+                    Text("Your gameplay training companion")
+                }
+
+                item {
+                    Text(
+                        "TRAINING MODULES",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                }
+
+                items(modules) { module ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { selectedModule = module.first }
+                    ) {
+                        Column(modifier = Modifier.padding(20.dp)) {
+                            Text(
+                                module.first,
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                            Text(module.second)
+                        }
                     }
                 }
             }
         }
     }
 }
-
