@@ -1,4 +1,3 @@
-
 package com.freefire.tactical
 
 import androidx.compose.foundation.layout.*
@@ -46,11 +45,9 @@ fun MapGuide() {
             .padding(16.dp)
     ) {
         Text(
-            "🗺️ MAP GUIDE",
+            "MAP GUIDE",
             style = MaterialTheme.typography.headlineMedium
         )
-
-        Spacer(modifier = Modifier.height(8.dp))
 
         Text("Learn basic map awareness and positioning.")
 
@@ -61,9 +58,7 @@ fun MapGuide() {
         ) {
             items(locations) { location ->
                 Card(modifier = Modifier.fillMaxWidth()) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
-                    ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
                         Text(
                             location.name,
                             style = MaterialTheme.typography.titleLarge
