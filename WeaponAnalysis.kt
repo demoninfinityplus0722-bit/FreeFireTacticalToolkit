@@ -1,4 +1,3 @@
-
 package com.freefire.tactical
 
 import androidx.compose.foundation.layout.*
@@ -32,18 +31,16 @@ fun WeaponAnalysis() {
             .padding(16.dp)
     ) {
         Text(
-            "🔫 WEAPON ANALYSIS",
+            "WEAPON ANALYSIS",
             style = MaterialTheme.typography.headlineMedium
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("Compare example weapon attributes")
-
-        Spacer(modifier = Modifier.height(12.dp))
+        Text("Compare example weapon attributes.")
 
         Text(
-            "These are sample training values, not official in-game stats.",
+            "These are sample values, not official game statistics.",
             style = MaterialTheme.typography.bodySmall
         )
 
@@ -54,17 +51,12 @@ fun WeaponAnalysis() {
         ) {
             items(weapons) { weapon ->
                 Card(modifier = Modifier.fillMaxWidth()) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
-                    ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
                         Text(
                             weapon.name,
                             style = MaterialTheme.typography.titleLarge
                         )
                         Text(weapon.category)
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
                         Text("Damage: ${weapon.damage}/100")
                         Text("Range: ${weapon.range}/100")
                         Text("Accuracy: ${weapon.accuracy}/100")
